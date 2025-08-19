@@ -46,7 +46,7 @@ const RecordList = ({
 /* useEffect(() => {
     setRecords(initialValues);
     setPage(paginationQuery?.page ?? 1);
-  }, [initialValues, paginationQuery]);  수정*/
+  }, [initialValues, paginationQuery]);  프론트 코드 수정 */
 
   useEffect(() => {
   setRecords(initialValues);
