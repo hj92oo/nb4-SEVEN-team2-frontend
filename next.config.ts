@@ -17,10 +17,11 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         port: '3001',
       },
-      {
+      
+      /*{
         protocol: 'https',
         hostname: 'sprint-be-project.s3.ap-northeast-2.amazonaws.com',
-      },
+      }, 수정 이미지 오류*/
     ],
   },
 };
