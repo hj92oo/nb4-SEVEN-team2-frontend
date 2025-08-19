@@ -47,7 +47,9 @@ const GroupJoinModal = ({
     <Modal className={modalCx('modal')} isOpen={isOpen} onClose={onClose}>
       <h1 className={modalCx('title')}>그룹에 참여하시겠어요?</h1>
       <p className={modalCx('description')}>
-        해당 그룹에서 사용할 닉네임과 번호를 입력해 주세요.
+
+        해당 그룹에서 사용할 닉네임과 비밀번호를 입력해 주세요.
+
       </p>
       <Form
         className={cx('form')}
@@ -66,7 +68,8 @@ const GroupJoinModal = ({
           />
         </div>
         <div>
-          <Label htmlFor="password">번호</Label>
+          <Label htmlFor="password">비밀번호</Label>
+
           <Input
             id="password"
             type="password"
