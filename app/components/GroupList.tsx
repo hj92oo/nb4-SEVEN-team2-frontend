@@ -91,19 +91,16 @@ const GroupList = ({
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const loadMore = useCallback(
-    async () => {
-      setIsLoading(true);
-      const { data: next } = await getGroupsAction({
-        ...paginationQuery,
-        page: page + 1,
-      });
-      setGroups((prev) => [...prev, ...next]);
-      setPage(page + 1);
-      setIsLoading(false);
-    },
-    [paginationQuery, page]
-  );
+  const loadMore = useCallback(async () => {
+    setIsLoading(true);
+    const { data: next } = await getGroupsAction({
+      ...paginationQuery,
+      page: page + 1,
+    });
+    setGroups((prev) => [...prev, ...next]);
+    setPage(page + 1);
+    setIsLoading(false);
+  }, [paginationQuery, page]);
 
   useEffect(() => {
     if (inView && !isLoading) {

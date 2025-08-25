@@ -16,7 +16,6 @@ import Card from '@/lib/components/Card';
 import ImageInput from '@/lib/components/ImageInput';
 import { createRecordAction } from '../actions';
 
-
 const cx = classNames.bind(styles);
 
 const defaultValues: RecordCreate = {
@@ -47,11 +46,26 @@ const RecordForm = ({
     });
 
   const submit = async (data: RecordCreate) => {
-    const reuslt = await createRecordAction(groupId, data);
-    if (reuslt.status !== 200) {
-      setError('root', {
-        message: reuslt.error.message,
-      });
+    const result = await createRecordAction(groupId, data);
+    // if (reuslt.status !== 200) {
+    //   setError('root', {
+    //     message: reuslt.error.message,
+    //   });
+    //   return;
+    // }
+    // 임시 수정, 변수명 오타 (reuslt)
+    if (result.status !== 200) {
+      if (Array.isArray(result.error)) {
+        result.error.forEach((err) => {
+          // err.path가 배열일 수도 있음
+          setError(err.path ?? 'root', { message: err.message });
+        });
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setError((result.error.path || 'root') as any, {
+          message: result.error.message,
+        });
+      }
       return;
     }
     onSubmit();
@@ -152,7 +166,11 @@ const RecordForm = ({
           />
         </div>
 
-        <Button type="submit" className={cx('submit')} disabled={!formState.isValid}>
+        <Button
+          type="submit"
+          className={cx('submit')}
+          disabled={!formState.isValid}
+        >
           생성하기
         </Button>
       </Form>

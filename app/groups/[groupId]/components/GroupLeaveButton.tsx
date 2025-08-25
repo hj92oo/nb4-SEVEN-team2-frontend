@@ -33,10 +33,25 @@ const GroupLeaveModal = ({
   const submit = async (data: GroupJoin) => {
     const result = await leaveGroupAction(groupId, data);
     if (result.status !== 200) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setError((result.error.path as any) ?? 'root', {
-        message: result.error.message,
-      });
+      // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // setError((result.error.path as any) ?? 'root', {
+      //   message: result.error.message,
+      // });
+      // 임시
+      // 에러 객체가 배열인지 확인
+      if (Array.isArray(result.error)) {
+        // 에러가 배열일 경우, 각 에러를 순회하며 처리
+        result.error.forEach((err) => {
+          // setError 함수에 err.path와 err.message를 전달
+          setError(err.path ?? 'root', { message: err.message });
+        });
+      } else {
+        // 에러가 배열이 아닐 경우, 기존의 단일 에러 처리 로직 적용
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setError((result.error.path as any) ?? 'root', {
+          message: result.error.message,
+        });
+      }
       return;
     }
 

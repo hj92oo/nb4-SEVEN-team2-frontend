@@ -86,11 +86,28 @@ const GroupForm = ({
         ? (values: GroupUpdate) => updateGroupAction(group.id, values)
         : createGroupAction;
     const result = await action(data as GroupCreate);
+    // if (result.status !== 200) {
+    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //   setError((result.error.path as any) ?? 'root', {
+    //     message: result.error.message,
+    //   });
+    //   return;
+    // }
+    // 임시 수정
     if (result.status !== 200) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setError((result.error.path as any) ?? 'root', {
-        message: result.error.message,
-      });
+      if (Array.isArray(result.error)) {
+        // Handle multiple errors
+        result.error.forEach((err) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setError(err.path as any, { message: err.message });
+        });
+      } else {
+        // Handle single error (current code)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setError((result.error.path as any) ?? 'root', {
+          message: result.error.message,
+        });
+      }
       return;
     }
 
