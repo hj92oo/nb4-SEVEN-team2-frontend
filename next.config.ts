@@ -18,8 +18,6 @@ const nextConfig: NextConfig = {
         port: '3001',
       },
      {
-      //http 빼서 test
-      
         protocol: 'https',
         hostname: 'nb4-seven-team2-backend.onrender.com',
       },
