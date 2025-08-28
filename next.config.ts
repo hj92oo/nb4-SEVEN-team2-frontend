@@ -18,12 +18,14 @@ const nextConfig: NextConfig = {
         port: '3001',
       },
      {
+      //http 빼서 test
+      
         protocol: 'https',
-        hostname: 'https://nb4-seven-team2-backend.onrender.com/',
+        hostname: 'nb4-seven-team2-backend.onrender.com',
       },
       {
         protocol: 'http', // 또는 'https' 사용
-        hostname: 'https://nb4-seven-team2-backend.onrender.com/',
+        hostname: 'nb4-seven-team2-backend.onrender.com',
         port: '', // 포트 없으면 빈 문자열
         pathname: '/uploads/**', // 경로 패턴, 임시
       },
@@ -33,7 +35,7 @@ const nextConfig: NextConfig = {
       }, 수정 이미지 오류*/
       {
         protocol: 'http', // 또는 'https' 사용
-        hostname: 'https://nb4-seven-team2-backend.onrender.com/',
+        hostname: 'nb4-seven-team2-backend.onrender.com',
         port: '', // 포트 없으면 빈 문자열
         pathname: '/uploads/**', // 경로 패턴, 임시
       },
