@@ -1,7 +1,7 @@
 import * as Axios from 'axios';
 
 // 환경 변수가 없는 경우 명확히 에러
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '');
 if (!BASE_URL) {
   throw new Error('NEXT_PUBLIC_API_URL is not defined');
 }
