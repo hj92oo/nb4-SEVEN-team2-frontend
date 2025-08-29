@@ -108,10 +108,16 @@ const GroupList = ({
     }
   }, [inView, loadMore, isLoading]);
 
-  useEffect(() => {
+useEffect(() => {
     setGroups(initialValues);
     setPage(paginationQuery?.page ?? 1);
-  }, [initialValues, paginationQuery]);
+  }, [initialValues, paginationQuery]); 
+
+/*  useEffect(() => {
+    setGroups(initialValues);
+    setPage(paginationQuery?.page ?? 1);
+  }, []); */
+  
 
   const hasNext = groups.length < total;
 
